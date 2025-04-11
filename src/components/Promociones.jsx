@@ -9,8 +9,10 @@ import imagen2 from '../assets/imagen2.jpg';
 import imagen3 from '../assets/imagen3.jpg';
 import imagen4 from '../assets/imagen4.jpg';
 import imagen5 from '../assets/imagen5.jpg';
+import imagen6 from '../assets/imagen6.jpg';
+import imagen7 from '../assets/imagen7.jpg';
 
-const imagenes = [imagen1, imagen2, imagen3, imagen4, imagen5];
+const imagenes = [imagen6, imagen7];
 
 function Promociones() {
   const settings = {
@@ -34,8 +36,8 @@ function Promociones() {
               alt={`Slide ${index + 1}`} 
               style={{ 
                 width: '100%', 
-                maxWidth: '899px', 
-                height: '1599px', 
+                maxWidth: '1038px', 
+                height: '180px', 
                 objectFit: 'contain', 
                 borderRadius: '10px',
                 boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.2)'

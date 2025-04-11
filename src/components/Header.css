@@ -1,0 +1,26 @@
+.encabezado-style{
+    background-color: rgb(0, 0, 0);
+    font-size: 32px;
+    width: 100%;
+    padding: 0,5rem 1rem;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.titulo-style{
+    color: #ff4500;
+    font-family:'Baloo 2', cursive;
+    font-weight: bold;
+}
+
+.boton-style{
+    color: #ff4500;
+    background-color: white;
+    display: flex;
+    /* border: none; */
+    padding: 0rem 1rem;
+    font-size: 1.2rem;
+    /* border-radius: 10px; */
+    cursor: pointer;
+}

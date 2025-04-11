@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { db } from "../firebaseConfig";
 import { collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
-import "../Styles/Products.css"
+import "./Products.css"
 
 const opciones = [ "Hamburguesas", "Sandwichs", "Entradas", "Bebidas", "Pizzas", "Promociones"];
 
@@ -80,7 +80,6 @@ export default function Products() {
 
   return (
     <div>
-
                 <h1>Productos</h1>
             <div>
                 <input type="text" name="name" placeholder="Nombre del producto" value={newProduct.name} onChange={handleInputChange} />
@@ -91,22 +90,32 @@ export default function Products() {
                 <button onClick={addProduct}>Agregar Producto</button>
             </div>
 
-            <div className="Mensaje-menu">
-              <h2>¿Qué esperas para probar nuestras Delicias?</h2>
+            <div >
+              <h2 className="Mensaje-menu">¿Qué esperas para probar nuestras Delicias?</h2>
             </div>
 
             {
                 products.length > 0 ? (
                     products.map((product) => (
-                <div key={product.id} style={{ position: "relative", textAlign: "center" }}>
-                    <h1>{product.name} </h1>
-                    <p>{product.description}</p>
-                    <p><strong>Precio: </strong>${product.price}</p>
-                    <img src={product.image} alt={product.name} style={{ width: "100px", height:"100px"}} />
-                    <p>{product.category}</p>
-                    <br/>
-                    <button onClick={() => deleteProduct(product.id)}>Eliminar</button>           
+              <div class="fondo-seccion-productos">
+                <div class="card">
+                        <div key={product.id}>
+                          <div className="estilo-producto-ind">
+                            <img src={product.image} alt={product.name} className="card-img-top"/>
+                            <div class="card-body">
+                              <div class="text-center">
+                                <h1 className="nombre-producto" >{product.name}</h1>
+                                <p className="descripcion-producto">{product.description}</p>
+                                <p className="precio-producto"><strong>Precio: </strong>${product.price}</p>
+                                <p className="categoria-producto">{product.category}</p>
+                              </div>
+                            </div>
+                            <br/>
+                            <button onClick={() => deleteProduct(product.id)}>Eliminar</button>  
+                          </div>
+                        </div>
                 </div>
+              </div>
                     ))
                     ) : ( 
                     <p>no hay productos disponibles</p> )

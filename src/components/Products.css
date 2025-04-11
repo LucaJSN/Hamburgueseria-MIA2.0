@@ -1,0 +1,72 @@
+h2.Mensaje-menu {
+    color:white;
+    background-color: rgb(255, 80, 11);
+
+}
+
+.py-5 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+.col-md-5 {
+    flex: 0 0 auto;
+    width: 41.66666667%;
+  }
+
+.nombre-producto{
+  color: rgb(0, 0, 0);
+}
+
+.descripcion-producto{
+  color: rgb(0, 0, 0);
+}
+
+.precio-producto{
+  color: rgb(0, 0, 0);
+}
+
+.categoria-producto{
+  color: rgb(0, 0, 0);
+}
+
+.estilo-producto-ind{
+  background-color: #FF5F00;
+}
+
+/* Contenedor de las tarjetas para que haya 2 por fila */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas por fila */
+  gap: 20px; /* Espaciado entre tarjetas */
+  justify-content: center;
+  margin: "500px";
+}
+
+/* Estilo de cada tarjeta */
+.card {
+  --bs-card-border-width: 1px;
+  --bs-card-border-color: transparent;
+  --bs-card-border-radius: 0.375rem;
+  --bs-card-bg: black; /* Fondo negro */
+  
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  width: 50px;  
+  border-radius: auto;
+  padding: 50px;
+  text-align:center;
+}
+
+/* Estilo de la imagen */
+.card img {
+  width: 200px; /* Más grande */
+  height: 160px; /* Más grande */
+  object-fit: cover; /* Mantiene proporciones sin deformar */
+}
+
+.fondo-seccion-productos{
+  background-color: black;
+}
