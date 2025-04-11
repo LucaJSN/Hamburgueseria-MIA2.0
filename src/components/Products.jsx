@@ -1,6 +1,10 @@
 import React, { useEffect, useState} from "react";
 import { db } from "../firebaseConfig";
 import { collection, getDocs, addDoc, deleteDoc, doc } from "firebase/firestore";
+import "../Styles/Products.css"
+
+const opciones = [ "Hamburguesas", "Sandwichs", "Entradas", "Bebidas", "Pizzas", "Promociones"];
+
 
 //funcion Cargar un Producto
 export default function Products() {
@@ -10,6 +14,7 @@ export default function Products() {
         description: "",
         price: "",
         image: "",
+        category: "",
     });
 
 
@@ -33,13 +38,18 @@ export default function Products() {
         fetchProducts();
       }, []);
     
-      const handleInputChange = (e) => {
-        setNewProduct({ ...newProduct, [e.target.name]: e.target.value});
+      const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setNewProduct((prevProduct) => ({
+          ...prevProduct,
+          [name]: value,
+        }));
       };
+      
 
           // Función para agregar un producto a Firestore
     const addProduct = async () => {
-        if (!newProduct.name || !newProduct.price || !newProduct.image){
+        if (!newProduct.name || !newProduct.price || !newProduct.image || !newProduct.category){
           alert("complete la informacion del producto");
           return
         }
@@ -47,7 +57,7 @@ export default function Products() {
         try {
           const docRef = await addDoc(collection(db, "products"), newProduct);
           console.log("producto agregado exitosamente con el id:", docRef.id);
-          setNewProduct({ name: "", description: "", price: "", image: ""}); // limpiar
+          setNewProduct({ name: "", description: "", price: "", image: "", category: ""}); // limpiar
           fetchProducts(); // Recargar los productos después de agregar uno nuevo
         } catch (error) {
           console.error("Error al agregar el producto:", error);
@@ -70,13 +80,19 @@ export default function Products() {
 
   return (
     <div>
+
                 <h1>Productos</h1>
             <div>
                 <input type="text" name="name" placeholder="Nombre del producto" value={newProduct.name} onChange={handleInputChange} />
                 <input type="text" name="description" placeholder="Descripción" value={newProduct.description} onChange={handleInputChange} />
                 <input type="number" name="price" placeholder="Precio" value={newProduct.price}          onChange={handleInputChange}        />
                 <input          type="text"          name="image"          placeholder="URL de la imagen"          value={newProduct.image}          onChange={handleInputChange}        />
+                <select        name="category" value={newProduct.category} onChange={handleInputChange}> <option value="">-- Selecciona una categoría --</option> {opciones.map((opcion, index) => ( <option key={index} value={opcion}> {opcion} </option> ))} </select>
                 <button onClick={addProduct}>Agregar Producto</button>
+            </div>
+
+            <div className="Mensaje-menu">
+              <h2>¿Qué esperas para probar nuestras Delicias?</h2>
             </div>
 
             {
@@ -87,6 +103,7 @@ export default function Products() {
                     <p>{product.description}</p>
                     <p><strong>Precio: </strong>${product.price}</p>
                     <img src={product.image} alt={product.name} style={{ width: "100px", height:"100px"}} />
+                    <p>{product.category}</p>
                     <br/>
                     <button onClick={() => deleteProduct(product.id)}>Eliminar</button>           
                 </div>
